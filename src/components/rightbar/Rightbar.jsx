@@ -1,4 +1,6 @@
 import classes from './rightbar.module.scss';
+import { Users } from '../../staticData';
+import OnlineFriends from '../onlineFriends/OnlineFriends';
 
 export default function Rightbar() {
   return (
@@ -13,34 +15,9 @@ export default function Rightbar() {
         <img className={classes.rightbarAd} src="./ad.png" alt="" />
         <h4 className={classes.rightbarTitle}>Online Friends</h4>
         <ul className={classes.friendList}>
-          <li className={classes.rightbarFriend}>
-            <div className={classes.rightbarImgContainer}>
-              <img src="./person/3.jpeg" alt="" />
-              <span className={classes.rightbarOnline}></span>
-            </div>
-            <span>John Doe</span>
-          </li>
-          <li className={classes.rightbarFriend}>
-            <div className={classes.rightbarImgContainer}>
-              <img src="./person/3.jpeg" alt="" />
-              <span className={classes.rightbarOnline}></span>
-            </div>
-            <span>John Doe</span>
-          </li>
-          <li className={classes.rightbarFriend}>
-            <div className={classes.rightbarImgContainer}>
-              <img src="./person/3.jpeg" alt="" />
-              <span className={classes.rightbarOnline}></span>
-            </div>
-            <span>John Doe</span>
-          </li>
-          <li className={classes.rightbarFriend}>
-            <div className={classes.rightbarImgContainer}>
-              <img src="./person/3.jpeg" alt="" />
-              <span className={classes.rightbarOnline}></span>
-            </div>
-            <span>John Doe</span>
-          </li>
+          {Users.map((user) => {
+            return <OnlineFriends key={user.id} user={user} />;
+          })}
         </ul>
       </div>
     </div>
