@@ -1,5 +1,4 @@
 import classes from './share.module.scss';
-import person from '../../assets/person/1.jpeg';
 import { MdEmojiEmotions, MdLabel, MdPermMedia, MdRoom } from 'react-icons/md';
 
 export default function Share() {
@@ -7,7 +6,11 @@ export default function Share() {
     <div className={classes.shareContainer}>
       <div className={classes.shareWrapper}>
         <div className={classes.shareTop}>
-          <img className={classes.shareProfileImg} src={person} alt="" />
+          <img
+            className={classes.shareProfileImg}
+            src="./person/1.jpeg"
+            alt=""
+          />
           <input
             className={classes.shareInput}
             type="text"

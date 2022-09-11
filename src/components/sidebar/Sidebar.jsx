@@ -10,7 +10,6 @@ import {
   MdSchool,
   MdWorkOutline,
 } from 'react-icons/md';
-import friend1 from '../../assets/person/2.jpeg';
 
 export default function Sidebar() {
   return (
@@ -58,27 +57,51 @@ export default function Sidebar() {
         <hr className={classes.sidebarHr} />
         <ul className={classes.sidebarFriendList}>
           <li className={classes.sidebarFriend}>
-            <img className={classes.sidebarFriendImg} src={friend1} alt="" />
+            <img
+              className={classes.sidebarFriendImg}
+              src="./person/2.jpeg"
+              alt=""
+            />
             <span className={classes.friendName}>Jane Doe</span>
           </li>
           <li className={classes.sidebarFriend}>
-            <img className={classes.sidebarFriendImg} src={friend1} alt="" />
+            <img
+              className={classes.sidebarFriendImg}
+              src="./person/2.jpeg"
+              alt=""
+            />
             <span className={classes.friendName}>Jane Doe</span>
           </li>
           <li className={classes.sidebarFriend}>
-            <img className={classes.sidebarFriendImg} src={friend1} alt="" />
+            <img
+              className={classes.sidebarFriendImg}
+              src="./person/2.jpeg"
+              alt=""
+            />
             <span className={classes.friendName}>Jane Doe</span>
           </li>
           <li className={classes.sidebarFriend}>
-            <img className={classes.sidebarFriendImg} src={friend1} alt="" />
+            <img
+              className={classes.sidebarFriendImg}
+              src="./person/2.jpeg"
+              alt=""
+            />
             <span className={classes.friendName}>Jane Doe</span>
           </li>
           <li className={classes.sidebarFriend}>
-            <img className={classes.sidebarFriendImg} src={friend1} alt="" />
+            <img
+              className={classes.sidebarFriendImg}
+              src="./person/2.jpeg"
+              alt=""
+            />
             <span className={classes.friendName}>Jane Doe</span>
           </li>
           <li className={classes.sidebarFriend}>
-            <img className={classes.sidebarFriendImg} src={friend1} alt="" />
+            <img
+              className={classes.sidebarFriendImg}
+              src="./person/2.jpeg"
+              alt=""
+            />
             <span className={classes.friendName}>Jane Doe</span>
           </li>
         </ul>

@@ -1,6 +1,6 @@
 import classes from './topbar.module.scss';
 import { MdChat, MdNotifications, MdPerson, MdSearch } from 'react-icons/md';
-import person from '../../assets/person/1.jpeg';
+// import person from '../../assets/person/1.jpeg';
 
 export default function Topbar() {
   return (
@@ -37,7 +37,7 @@ export default function Topbar() {
             <span className={classes.topbarIconBadge}>5</span>
           </div>
         </div>
-        <img src={person} alt="" className={classes.topbarImg} />
+        <img src="./person/1.jpeg" alt="" className={classes.topbarImg} />
       </div>
     </div>
   );
