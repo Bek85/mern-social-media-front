@@ -1,9 +1,17 @@
 import classes from './post.module.scss';
 import { MdMoreVert } from 'react-icons/md';
 import { Users } from '../../staticData';
+import { useState } from 'react';
 
 export default function Post({ post }) {
   const user = Users.filter((user) => user.id === post.userId);
+  const [like, setLike] = useState(post.like);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const likeHandler = () => {
+    setLike(isLiked ? like - 1 : like + 1);
+    setIsLiked(!isLiked);
+  };
 
   return (
     <div className={classes.post}>
@@ -24,10 +32,20 @@ export default function Post({ post }) {
         </div>
         <div className={classes.postBottom}>
           <div className={classes.postBottomLeft}>
-            <img className={classes.postIcon} src="./like.png" alt="" />
-            <img className={classes.postIcon} src="./heart.png" alt="" />
+            <img
+              onClick={likeHandler}
+              className={classes.postIcon}
+              src="./like.png"
+              alt=""
+            />
+            <img
+              onClick={likeHandler}
+              className={classes.postIcon}
+              src="./heart.png"
+              alt=""
+            />
             <span className={classes.postLikeCounter}>
-              {post.like} people like it
+              {like} people like it
             </span>
           </div>
           <div className={classes.postBottomRight}>
