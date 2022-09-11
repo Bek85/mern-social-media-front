@@ -10,6 +10,8 @@ import {
   MdSchool,
   MdWorkOutline,
 } from 'react-icons/md';
+import CloseFriends from '../closeFriends/CloseFriends';
+import { Users } from '../../staticData';
 
 export default function Sidebar() {
   return (
@@ -56,54 +58,9 @@ export default function Sidebar() {
         <button className={classes.sidebarButton}>Show More</button>
         <hr className={classes.sidebarHr} />
         <ul className={classes.sidebarFriendList}>
-          <li className={classes.sidebarFriend}>
-            <img
-              className={classes.sidebarFriendImg}
-              src="./person/2.jpeg"
-              alt=""
-            />
-            <span className={classes.friendName}>Jane Doe</span>
-          </li>
-          <li className={classes.sidebarFriend}>
-            <img
-              className={classes.sidebarFriendImg}
-              src="./person/2.jpeg"
-              alt=""
-            />
-            <span className={classes.friendName}>Jane Doe</span>
-          </li>
-          <li className={classes.sidebarFriend}>
-            <img
-              className={classes.sidebarFriendImg}
-              src="./person/2.jpeg"
-              alt=""
-            />
-            <span className={classes.friendName}>Jane Doe</span>
-          </li>
-          <li className={classes.sidebarFriend}>
-            <img
-              className={classes.sidebarFriendImg}
-              src="./person/2.jpeg"
-              alt=""
-            />
-            <span className={classes.friendName}>Jane Doe</span>
-          </li>
-          <li className={classes.sidebarFriend}>
-            <img
-              className={classes.sidebarFriendImg}
-              src="./person/2.jpeg"
-              alt=""
-            />
-            <span className={classes.friendName}>Jane Doe</span>
-          </li>
-          <li className={classes.sidebarFriend}>
-            <img
-              className={classes.sidebarFriendImg}
-              src="./person/2.jpeg"
-              alt=""
-            />
-            <span className={classes.friendName}>Jane Doe</span>
-          </li>
+          {Users.map((user) => {
+            return <CloseFriends key={user.id} user={user} />;
+          })}
         </ul>
       </div>
     </div>
