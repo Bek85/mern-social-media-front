@@ -12,6 +12,7 @@ export default function Post({ post }) {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
+  console.log(user);
 
   return (
     <div className={classes.post}>
@@ -35,13 +36,13 @@ export default function Post({ post }) {
             <img
               onClick={likeHandler}
               className={classes.postIcon}
-              src="./like.png"
+              src="./assets/like.png"
               alt=""
             />
             <img
               onClick={likeHandler}
               className={classes.postIcon}
-              src="./heart.png"
+              src="./assets/heart.png"
               alt=""
             />
             <span className={classes.postLikeCounter}>

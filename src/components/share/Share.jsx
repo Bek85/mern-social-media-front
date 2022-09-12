@@ -8,7 +8,7 @@ export default function Share() {
         <div className={classes.shareTop}>
           <img
             className={classes.shareProfileImg}
-            src="./person/1.jpeg"
+            src="./assets/person/1.jpeg"
             alt=""
           />
           <input
