@@ -3,6 +3,7 @@ import { MdMoreVert } from 'react-icons/md';
 // import { Users } from '../../staticData';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import TimeAgo from 'timeago-react';
 
 export default function Post({ post }) {
   const [user, setUser] = useState({});
@@ -31,7 +32,9 @@ export default function Post({ post }) {
           <div className={classes.postTopLeft}>
             <img src={user.profilePic || '/assets/noAvatar.png'} alt="" />
             <span className={classes.postUsername}>{user.username}</span>
-            <span className={classes.postDate}>{post.createdAt}</span>
+            <span className={classes.postDate}>
+              <TimeAgo datetime={post.createdAt} />
+            </span>
           </div>
           <div className={classes.postTopRight}>
             <MdMoreVert />
