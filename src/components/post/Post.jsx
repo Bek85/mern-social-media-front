@@ -1,12 +1,23 @@
 import classes from './post.module.scss';
 import { MdMoreVert } from 'react-icons/md';
-import { Users } from '../../staticData';
-import { useState } from 'react';
+// import { Users } from '../../staticData';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function Post({ post }) {
-  const user = Users.filter((user) => user.id === post.userId);
-  const [like, setLike] = useState(post.like);
+  const [user, setUser] = useState({});
+  // const user = Users.filter((user) => user.id === post.userId);
+  const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await axios.get(`api/users/${post.userId}`);
+      setUser(response.data);
+    };
+
+    getUser();
+  }, []);
 
   const likeHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
@@ -18,17 +29,17 @@ export default function Post({ post }) {
       <div className={classes.postWrapper}>
         <div className={classes.postTop}>
           <div className={classes.postTopLeft}>
-            <img src={user[0].profilePicture} alt="" />
-            <span className={classes.postUsername}>{user[0].username}</span>
-            <span className={classes.postDate}>{post.date}</span>
+            <img src={user.profilePic || '/assets/noAvatar.png'} alt="" />
+            <span className={classes.postUsername}>{user.username}</span>
+            <span className={classes.postDate}>{post.createdAt}</span>
           </div>
           <div className={classes.postTopRight}>
             <MdMoreVert />
           </div>
         </div>
         <div className={classes.postCenter}>
-          <span className={classes.postText}>{post?.desc}</span>
-          <img src={post.photo} alt="" />
+          <span className={classes.postText}>{post?.description}</span>
+          <img src={post.img || '/assets/noCover.png'} alt="" />
         </div>
         <div className={classes.postBottom}>
           <div className={classes.postBottomLeft}>
@@ -45,7 +56,7 @@ export default function Post({ post }) {
               alt=""
             />
             <span className={classes.postLikeCounter}>
-              {like} people like it
+              {like} {like >= 2 ? 'people like it' : 'person likes it'}{' '}
             </span>
           </div>
           <div className={classes.postBottomRight}>
