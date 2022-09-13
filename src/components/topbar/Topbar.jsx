@@ -1,12 +1,14 @@
 import classes from './topbar.module.scss';
 import { MdChat, MdNotifications, MdPerson, MdSearch } from 'react-icons/md';
-// import person from '../../assets/person/1.jpeg';
+import { Link } from 'react-router-dom';
 
 export default function Topbar() {
   return (
     <div className={classes.topbarContainer}>
       <div className={classes.topbarLeft}>
-        <span className={classes.logo}>Social App</span>
+        <Link to="/">
+          <span className={classes.logo}>Social App</span>
+        </Link>
       </div>
       <div className={classes.topbarCenter}>
         <div className={classes.searchbox}>
