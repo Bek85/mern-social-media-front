@@ -35,13 +35,13 @@ export default function Post({ post }) {
             <img
               onClick={likeHandler}
               className={classes.postIcon}
-              src="./assets/like.png"
+              src="/assets/like.png"
               alt=""
             />
             <img
               onClick={likeHandler}
               className={classes.postIcon}
-              src="./assets/heart.png"
+              src="/assets/heart.png"
               alt=""
             />
             <span className={classes.postLikeCounter}>
