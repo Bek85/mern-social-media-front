@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 import axios from 'axios';
 import classes from './profile.module.scss';
 import Rightbar from '../../components/rightbar/Rightbar';
@@ -8,15 +9,18 @@ import Feed from '../../components/feed/Feed';
 
 export default function Profile() {
   const [user, setUser] = useState({});
+  const params = useParams();
 
   useEffect(() => {
     const getUser = async () => {
-      const response = await axios.get(`/api/users?username=Alex`);
+      const response = await axios.get(
+        `/api/users?username=${params.username}`
+      );
       setUser(response.data);
     };
 
     getUser();
-  }, []);
+  }, [params.username]);
   return (
     <>
       <Topbar />
@@ -42,7 +46,7 @@ export default function Profile() {
             </div>
           </div>
           <div className={classes.profileRightBottom}>
-            <Feed username="Ben" />
+            <Feed username={user.username} />
             <Rightbar user={user} />
           </div>
         </div>
