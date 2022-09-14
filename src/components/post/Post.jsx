@@ -18,7 +18,7 @@ export default function Post({ post }) {
     };
 
     getUser();
-  }, []);
+  }, [post.userId]);
 
   const likeHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
@@ -59,7 +59,7 @@ export default function Post({ post }) {
               alt=""
             />
             <span className={classes.postLikeCounter}>
-              {like} {like >= 2 ? 'people like it' : 'person likes it'}{' '}
+              {like >= 1 && like} {like >= 2 ? 'people like it' : ''}{' '}
             </span>
           </div>
           <div className={classes.postBottomRight}>
