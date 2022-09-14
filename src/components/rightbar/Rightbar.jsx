@@ -2,7 +2,7 @@ import classes from './rightbar.module.scss';
 import { Users } from '../../staticData';
 import OnlineFriends from '../onlineFriends/OnlineFriends';
 
-export default function Rightbar({ profile }) {
+export default function Rightbar({ user }) {
   const HomeRightbar = () => {
     return (
       <>
@@ -29,15 +29,21 @@ export default function Rightbar({ profile }) {
         <div className={classes.rightbarInfo}>
           <div className={classes.rightbarInfoItem}>
             <span className={classes.rightbarInfoKey}>City:</span>
-            <span className={classes.rightbarInfoValue}>New York</span>
+            <span className={classes.rightbarInfoValue}>{user.city}</span>
           </div>
           <div className={classes.rightbarInfoItem}>
             <span className={classes.rightbarInfoKey}>From:</span>
-            <span className={classes.rightbarInfoValue}>Madrid</span>
+            <span className={classes.rightbarInfoValue}>{user.from}</span>
           </div>
           <div className={classes.rightbarInfoItem}>
             <span className={classes.rightbarInfoKey}>Relationship:</span>
-            <span className={classes.rightbarInfoValue}>Single</span>
+            <span className={classes.rightbarInfoValue}>
+              {user.relationship === 1
+                ? 'Single'
+                : user.relationship === 2
+                ? 'Married'
+                : ''}
+            </span>
           </div>
         </div>
         <h4 className={classes.rightbarTitle}>User friends</h4>
@@ -97,7 +103,7 @@ export default function Rightbar({ profile }) {
   return (
     <div className={classes.rightbar}>
       <div className={classes.rightbarWrapper}>
-        {profile ? <ProfileRightbar /> : <HomeRightbar />}
+        {user ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
   );

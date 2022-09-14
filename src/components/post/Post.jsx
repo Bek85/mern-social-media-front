@@ -3,6 +3,7 @@ import { MdMoreVert } from 'react-icons/md';
 // import { Users } from '../../staticData';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
 
 export default function Post({ post }) {
@@ -13,7 +14,7 @@ export default function Post({ post }) {
 
   useEffect(() => {
     const getUser = async () => {
-      const response = await axios.get(`api/users/${post.userId}`);
+      const response = await axios.get(`/api/users?userId=${post.userId}`);
       setUser(response.data);
     };
 
@@ -30,7 +31,10 @@ export default function Post({ post }) {
       <div className={classes.postWrapper}>
         <div className={classes.postTop}>
           <div className={classes.postTopLeft}>
-            <img src={user.profilePic || '/assets/noAvatar.png'} alt="" />
+            <Link to={`profile/${user.username}`}>
+              <img src={user.profilePic || '/assets/noAvatar.png'} alt="" />
+            </Link>
+
             <span className={classes.postUsername}>{user.username}</span>
             <span className={classes.postDate}>
               <TimeAgo datetime={post.createdAt} />
