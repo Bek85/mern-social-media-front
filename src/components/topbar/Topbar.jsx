@@ -1,8 +1,11 @@
 import classes from './topbar.module.scss';
 import { MdChat, MdNotifications, MdPerson, MdSearch } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Topbar() {
+  const { user } = useContext(AuthContext);
   return (
     <div className={classes.topbarContainer}>
       <div className={classes.topbarLeft}>
@@ -39,7 +42,13 @@ export default function Topbar() {
             <span className={classes.topbarIconBadge}>5</span>
           </div>
         </div>
-        <img src="/assets/person/1.jpeg" alt="" className={classes.topbarImg} />
+        <Link to={`/profile/${user.username}`}>
+          <img
+            src={user.profilePic || '/assets/noAvatar.png'}
+            alt=""
+            className={classes.topbarImg}
+          />
+        </Link>
       </div>
     </div>
   );
