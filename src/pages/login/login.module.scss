@@ -56,7 +56,7 @@
       }
 
       .loginBtn,
-      .loginRegisterBtn {
+      .registerBtn {
         height: 50px;
         border-radius: 10px;
         border: none;
@@ -67,11 +67,12 @@
         cursor: pointer;
       }
 
-      .loginRegisterBtn {
+      .registerBtn {
         width: 70%;
-        height: 50px;
         align-self: center;
         background-color: #42b72a;
+        text-align: center;
+        padding: 15px 0;
       }
 
       span {

@@ -55,9 +55,10 @@
         outline: none;
       }
 
-      .registerBtn,
-      .registerRegisterBtn {
-        height: 50px;
+      .loginBtn,
+      .registerBtn {
+        // height: 50px;
+        padding: 10px;
         border-radius: 10px;
         border: none;
         background-color: #1775ee;
@@ -65,11 +66,12 @@
         font-size: 18px;
         font-weight: 400;
         cursor: pointer;
+        text-align: center;
       }
 
-      .registerRegisterBtn {
+      .loginBtn {
         width: 70%;
-        height: 50px;
+        // height: 50px;
         align-self: center;
         background-color: #42b72a;
       }
