@@ -3,6 +3,7 @@ import { Users } from '../../staticData';
 import OnlineFriends from '../onlineFriends/OnlineFriends';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function Rightbar({ user }) {
   const [friends, setFriends] = useState([]);
@@ -66,7 +67,11 @@ export default function Rightbar({ user }) {
         <div className={classes.rightbarFollowings}>
           {friends.map((friend) => {
             return (
-              <div key={friend._id} className={classes.rightbarFollowing}>
+              <Link
+                to={`/profile/${friend.username}`}
+                key={friend._id}
+                className={classes.rightbarFollowing}
+              >
                 <img
                   src={friend.profilePic || '/assets/noAvatar.png'}
                   alt=""
@@ -75,7 +80,7 @@ export default function Rightbar({ user }) {
                 <span className={classes.rightbarFollowingName}>
                   {friend.username}
                 </span>
-              </div>
+              </Link>
             );
           })}
         </div>
