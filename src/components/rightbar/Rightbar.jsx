@@ -1,8 +1,24 @@
 import classes from './rightbar.module.scss';
 import { Users } from '../../staticData';
 import OnlineFriends from '../onlineFriends/OnlineFriends';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function Rightbar({ user }) {
+  const [friends, setFriends] = useState([]);
+
+  useEffect(() => {
+    const getFollowers = async () => {
+      try {
+        const friendsList = await axios.get(`/api/users/friends/${user._id}`);
+        setFriends(friendsList.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getFollowers();
+  }, [user]);
+
   const HomeRightbar = () => {
     return (
       <>
@@ -48,54 +64,20 @@ export default function Rightbar({ user }) {
         </div>
         <h4 className={classes.rightbarTitle}>User friends</h4>
         <div className={classes.rightbarFollowings}>
-          <div className={classes.rightbarFollowing}>
-            <img
-              src="/assets/person/1.jpeg"
-              alt=""
-              className={classes.rightbarFollowingImg}
-            />
-            <span className={classes.rightbarFollowingName}>John Carter</span>
-          </div>
-          <div className={classes.rightbarFollowing}>
-            <img
-              src="/assets/person/2.jpeg"
-              alt=""
-              className={classes.rightbarFollowingImg}
-            />
-            <span className={classes.rightbarFollowingName}>John Carter</span>
-          </div>
-          <div className={classes.rightbarFollowing}>
-            <img
-              src="/assets/person/3.jpeg"
-              alt=""
-              className={classes.rightbarFollowingImg}
-            />
-            <span className={classes.rightbarFollowingName}>John Carter</span>
-          </div>
-          <div className={classes.rightbarFollowing}>
-            <img
-              src="/assets/person/4.jpeg"
-              alt=""
-              className={classes.rightbarFollowingImg}
-            />
-            <span className={classes.rightbarFollowingName}>John Carter</span>
-          </div>
-          <div className={classes.rightbarFollowing}>
-            <img
-              src="/assets/person/5.jpeg"
-              alt=""
-              className={classes.rightbarFollowingImg}
-            />
-            <span className={classes.rightbarFollowingName}>John Carter</span>
-          </div>
-          <div className={classes.rightbarFollowing}>
-            <img
-              src="/assets/person/6.jpeg"
-              alt=""
-              className={classes.rightbarFollowingImg}
-            />
-            <span className={classes.rightbarFollowingName}>John Carter</span>
-          </div>
+          {friends.map((friend) => {
+            return (
+              <div key={friend._id} className={classes.rightbarFollowing}>
+                <img
+                  src={friend.profilePic || '/assets/noAvatar.png'}
+                  alt=""
+                  className={classes.rightbarFollowingImg}
+                />
+                <span className={classes.rightbarFollowingName}>
+                  {friend.username}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </>
     );
