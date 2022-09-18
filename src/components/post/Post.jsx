@@ -1,16 +1,22 @@
 import classes from './post.module.scss';
 import { MdMoreVert } from 'react-icons/md';
 // import { Users } from '../../staticData';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Post({ post }) {
   const [user, setUser] = useState({});
   // const user = Users.filter((user) => user.id === post.userId);
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
+  const { user: currentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    setIsLiked(post.likes.includes(currentUser._id));
+  }, [currentUser._id, post.likes]);
 
   useEffect(() => {
     const getUser = async () => {
@@ -22,6 +28,11 @@ export default function Post({ post }) {
   }, [post.userId]);
 
   const likeHandler = () => {
+    try {
+      axios.put(`/api/posts/${post._id}/like`, { userId: currentUser._id });
+    } catch (error) {
+      console.log(error);
+    }
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
@@ -63,7 +74,8 @@ export default function Post({ post }) {
               alt=""
             />
             <span className={classes.postLikeCounter}>
-              {like >= 1 && like} {like >= 2 ? 'people like it' : ''}{' '}
+              {like >= 1 && like}{' '}
+              {like >= 2 ? 'people like it' : 'person likes it'}{' '}
             </span>
           </div>
           <div className={classes.postBottomRight}>
