@@ -11,7 +11,7 @@ export default function Home() {
       <div className={classes.homeContainer}>
         <Sidebar />
         <Feed />
-        {/* <Rightbar /> */}
+        <Rightbar />
       </div>
     </>
   );

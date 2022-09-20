@@ -11,12 +11,12 @@ export default function Rightbar({ user }) {
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
   const [followed, setFollowed] = useState(
-    currentUser.followers.includes(user?._id)
+    currentUser.followers.includes(user?.id)
   );
 
   useEffect(() => {
     setFollowed(currentUser.followers.includes(user?._id));
-  }, [currentUser, user._id]);
+  }, [currentUser, user?._id]);
 
   useEffect(() => {
     const getFollowers = async () => {
