@@ -1,5 +1,11 @@
 import classes from './share.module.scss';
-import { MdEmojiEmotions, MdLabel, MdPermMedia, MdRoom } from 'react-icons/md';
+import {
+  MdCancel,
+  MdEmojiEmotions,
+  MdLabel,
+  MdPermMedia,
+  MdRoom,
+} from 'react-icons/md';
 import { useContext, useState, useRef } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
@@ -53,6 +59,12 @@ export default function Share() {
           />
         </div>
         <hr className={classes.shareHr} />
+        {file && (
+          <div className={classes.imgPreview}>
+            <img src={URL.createObjectURL(file)} alt="preview" />
+            <MdCancel onClick={() => setFile(null)} />
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className={classes.shareBottom}>
           <div className={classes.shareOptions}>
