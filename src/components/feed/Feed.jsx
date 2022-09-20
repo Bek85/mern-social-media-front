@@ -27,7 +27,7 @@ export default function Feed({ username }) {
   return (
     <div className={classes.feed}>
       <div className={classes.feedWrapper}>
-        <Share />
+        {username === user.username && <Share />}
         {posts.map((post) => {
           return <Post key={post._id} post={post} />;
         })}

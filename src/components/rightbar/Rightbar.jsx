@@ -1,12 +1,22 @@
 import classes from './rightbar.module.scss';
 import { Users } from '../../staticData';
 import OnlineFriends from '../onlineFriends/OnlineFriends';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
+import { MdAdd, MdRemove } from 'react-icons/md';
 
 export default function Rightbar({ user }) {
   const [friends, setFriends] = useState([]);
+  const { user: currentUser, dispatch } = useContext(AuthContext);
+  const [followed, setFollowed] = useState(
+    currentUser.followers.includes(user?._id)
+  );
+
+  useEffect(() => {
+    setFollowed(currentUser.followers.includes(user?._id));
+  }, [currentUser, user._id]);
 
   useEffect(() => {
     const getFollowers = async () => {
@@ -19,6 +29,26 @@ export default function Rightbar({ user }) {
     };
     getFollowers();
   }, [user]);
+
+  const handleClick = async () => {
+    try {
+      if (followed) {
+        await axios.put(`/api/users/${user._id}/unfollow`, {
+          userId: currentUser._id,
+        });
+        dispatch({ type: 'UNFOLLOW', payload: user._id });
+      } else {
+        await axios.put(`/api/users/${user._id}/follow`, {
+          userId: currentUser._id,
+        });
+        dispatch({ type: 'FOLLOW', payload: user._id });
+      }
+
+      setFollowed(!followed);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const HomeRightbar = () => {
     return (
@@ -42,6 +72,12 @@ export default function Rightbar({ user }) {
   const ProfileRightbar = () => {
     return (
       <>
+        {user.username !== currentUser.username && (
+          <button onClick={handleClick} className={classes.rightbarFollowBtn}>
+            {followed ? 'Unfollow' : 'Follow'}
+            {followed ? <MdRemove /> : <MdAdd />}
+          </button>
+        )}
         <h4 className={classes.rightbarTitle}>User information</h4>
         <div className={classes.rightbarInfo}>
           <div className={classes.rightbarInfoItem}>
