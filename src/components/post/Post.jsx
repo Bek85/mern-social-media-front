@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
 import { AuthContext } from '../../context/AuthContext';
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function Post({ post }) {
   const [user, setUser] = useState({});
   // const user = Users.filter((user) => user.id === post.userId);
@@ -20,7 +22,7 @@ export default function Post({ post }) {
 
   useEffect(() => {
     const getUser = async () => {
-      const response = await axios.get(`/api/users?userId=${post.userId}`);
+      const response = await axios.get(`${backendUrl}/api/users?userId=${post.userId}`);
       setUser(response.data);
     };
 
@@ -29,7 +31,7 @@ export default function Post({ post }) {
 
   const likeHandler = () => {
     try {
-      axios.put(`/api/posts/${post._id}/like`, { userId: currentUser._id });
+      axios.put(`${backendUrl}/api/posts/${post._id}/like`, { userId: currentUser._id });
     } catch (error) {
       console.log(error);
     }

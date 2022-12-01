@@ -10,6 +10,8 @@ import { useContext, useState, useRef } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function Share() {
   const { user: currentUser } = useContext(AuthContext);
   const [file, setFile] = useState(null);
@@ -29,13 +31,13 @@ export default function Share() {
 
       newPost.img = fileName;
       try {
-        await axios.post('/api/upload', data);
+        await axios.post(`${backendUrl}/api/upload`, data);
       } catch (error) {
         console.log(error);
       }
     }
     try {
-      await axios.post('/api/posts', newPost);
+      await axios.post(`${backendUrl}/api/posts`, newPost);
       window.location.reload();
     } catch (error) {
       console.log(error);

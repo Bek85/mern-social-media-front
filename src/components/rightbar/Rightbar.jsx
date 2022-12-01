@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { MdAdd, MdRemove } from 'react-icons/md';
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function Rightbar({ user }) {
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
@@ -21,7 +23,7 @@ export default function Rightbar({ user }) {
   useEffect(() => {
     const getFollowers = async () => {
       try {
-        const friendsList = await axios.get(`/api/users/friends/${user._id}`);
+        const friendsList = await axios.get(`${backendUrl}/api/users/friends/${user._id}`);
         setFriends(friendsList.data);
       } catch (error) {
         console.log(error);

@@ -7,6 +7,8 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import Topbar from '../../components/topbar/Topbar';
 import Feed from '../../components/feed/Feed';
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function Profile() {
   const [user, setUser] = useState({});
   const params = useParams();
@@ -14,7 +16,7 @@ export default function Profile() {
   useEffect(() => {
     const getUser = async () => {
       const response = await axios.get(
-        `/api/users?username=${params.username}`
+        `${backendUrl}/api/users?username=${params.username}`
       );
       setUser(response.data);
     };
